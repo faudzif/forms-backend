@@ -1,0 +1,23 @@
+{
+  "name": "form-builder",
+  "version": "1.0.0",
+  "main": "form-builder.js",
+  "scripts": {
+    "start": "node form-builder.js",
+    "dev": "nodemon form-builder.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "chokidar": "^4.0.3",
+    "cors": "^2.8.5",
+    "express": "^5.1.0",
+    "mongoose": "^8.18.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.10"
+  }
+}
