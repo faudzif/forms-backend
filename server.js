@@ -47,7 +47,7 @@ const formSchema = new mongoose.Schema({
 const Form = mongoose.model("Form", formSchema);
 
 const app = express();
-const PORT = 3500;
+const port = process.env.PORT || 3500;
 
 let savedForm = []; // You can replace with DB storage later
 
@@ -176,6 +176,6 @@ app.delete("/api/form/:formId/field/:fieldId", (req, res) => {
   });
 });
 
-app.listen(PORT, () => {
-  console.log(`Server running at http://localhost:${PORT}`);
+app.listen(port, () => {
+  console.log(`Server running at http://localhost:${port}`);
 });
