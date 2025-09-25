@@ -1,10 +1,11 @@
 const express = require("express");
 const cors = require("cors");
+require("dotenv").config();
 const mongoose = require("mongoose");
 
 // .connect("mongodb+srv://<username>:<password>@cluster0.abcde.mongodb.net/formsDB", {
 mongoose
-  .connect("mongodb+srv://faudzif:faudzif@cluster0.ntojvsm.mongodb.net/formsDB")
+  .connect(process.env.MONGO_URI)
   .then(() => console.log("✅ Connected to MongoDB Atlas"))
   .catch((err) => console.error("MongoDB connection error:", err));
 
