@@ -3,7 +3,6 @@ const cors = require("cors");
 require("dotenv").config();
 const mongoose = require("mongoose");
 
-// .connect("mongodb+srv://<username>:<password>@cluster0.abcde.mongodb.net/formsDB", {
 mongoose
   .connect(process.env.MONGO_URI)
   .then(() => console.log("✅ Connected to MongoDB Atlas"))
@@ -56,12 +55,10 @@ app.use(cors());
 app.use(express.json());
 
 app.post("/api/form", async (req, res) => {
-  console.log("Incoming body:", JSON.stringify(req.body, null, 2));
 
   if (Array.isArray(req.body)) {
     // Multiple forms
     const forms = await Form.insertMany(req.body);
-    console.log("✅ Multiple forms saved:", forms);
     return res
       .status(200)
       .json({ message: "Forms saved successfully!", forms });
@@ -73,16 +70,10 @@ app.post("/api/form", async (req, res) => {
     return res.status(200).json({ message: "Form saved successfully!", form });
   }
 
-  res.status(200).json({ message: "Form saved successfully!" });
 });
 
 app.get("/api/form", async (req, res) => {
   res.set("Cache-Control", "no-store");
-  // if (!savedForm) {
-  //   return res.status(404).json({ message: "No form found" });
-  // }
-  // res.json(savedForm || []);
-
   try {
     const forms = await Form.find();
     if (!forms.length) {
@@ -92,8 +83,6 @@ app.get("/api/form", async (req, res) => {
   } catch (err) {
     res.status(500).json({ message: "Error fetching forms", error: err });
   }
-
-
 });
 
 // Update specific field by id
